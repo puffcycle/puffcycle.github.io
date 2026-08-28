@@ -764,9 +764,9 @@ function startLogoVideoPreloader(){
   (function() {
     const CONFIG = {
       startValue: 0, 
-      targetValue: 4296, 
-      animationDuration: 2500,
-      videoIncrement: 24,   
+      targetValue: 17296, 
+      animationDuration: 4500,
+      videoIncrement: 1000,   
       videoSelector: '.my-video',
       counterSelector: '#devicesCount'
     };
