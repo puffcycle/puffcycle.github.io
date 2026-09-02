@@ -621,39 +621,6 @@ function startLogoVideoPreloader(){
       current = idx;
     };
 
-    // Handle bin request form submission
-    const form = sidebar.querySelector(".my-form");
-    if (form) {
-      form.addEventListener("submit", (e) => {
-        e.preventDefault();
-        
-        // Collect form data
-        const formData = new FormData(form);
-        const data = {
-          state: formData.get("state") || form.querySelector("select").value,
-          name: form.querySelector("input[id='name']").value,
-          company: form.querySelector("input[placeholder='Company']").value,
-          email: form.querySelector("input[type='email']").value,
-          phone: form.querySelector("input[type='tel']").value,
-          address: form.querySelector("input[name='address']").value,
-          message: form.querySelector("textarea").value
-        };
-        
-        // Validate required fields
-        if (!data.state || !data.name || !data.email || !data.phone || !data.address) {
-          alert("Please fill in all required fields");
-          return;
-        }
-        
-        // Log data (we'll replace this with EmailJS in the next step)
-        console.log("Form data ready to send:", data);
-        alert("Thank you! We'll contact you soon at " + data.email);
-        
-        // Reset form
-        form.reset();
-      });
-    }
-
     if (openBtn) openBtn.addEventListener("click", open);
     if (heroBtn) openBtn && heroBtn.addEventListener("click", open);
     if (heroBtn2) heroBtn2.addEventListener("click", open);
