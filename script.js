@@ -621,6 +621,9 @@ function startLogoVideoPreloader(){
       current = idx;
     };
 
+    // Initialize EmailJS
+    emailjs.init("T7rj8YrwZN5ZsousS");
+    
     // Handle bin request form submission
     const form = sidebar.querySelector(".my-form");
     if (form) {
@@ -645,12 +648,45 @@ function startLogoVideoPreloader(){
           return;
         }
         
-        // Log data (we'll replace this with EmailJS in the next step)
-        console.log("Form data ready to send:", data);
-        alert("Thank you! We'll contact you soon at " + data.email);
+        // Get UI elements
+        const submitBtn = form.querySelector("button[type='submit']");
+        const statusDiv = document.getElementById("formStatus");
         
-        // Reset form
-        form.reset();
+        // Show loading state
+        if (submitBtn) submitBtn.disabled = true;
+        if (statusDiv) {
+          statusDiv.textContent = "Sending...";
+          statusDiv.style.display = "block";
+          statusDiv.style.backgroundColor = "#f0f0f0";
+          statusDiv.style.color = "#333";
+        }
+        
+        // Send email via EmailJS
+        emailjs.send("service_xadxutq", "template_8u3bo4m", data)
+          .then((response) => {
+            if (statusDiv) {
+              statusDiv.textContent = "✓ Success! We'll contact you soon.";
+              statusDiv.style.backgroundColor = "#d4edda";
+              statusDiv.style.color = "#155724";
+            }
+            form.reset();
+            
+            // Auto-close sidebar after 2 seconds
+            setTimeout(() => {
+              window._sidebar.close();
+            }, 2000);
+            
+            if (submitBtn) submitBtn.disabled = false;
+          })
+          .catch((error) => {
+            if (statusDiv) {
+              statusDiv.textContent = "✗ Error sending request. Please try again.";
+              statusDiv.style.backgroundColor = "#f8d7da";
+              statusDiv.style.color = "#721c24";
+            }
+            console.error("EmailJS error:", error);
+            if (submitBtn) submitBtn.disabled = false;
+          });
       });
     }
 
