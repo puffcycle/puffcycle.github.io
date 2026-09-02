@@ -384,51 +384,58 @@
       <div class="sidebar-slider">
         <div class="sidebar-slides">
           <div class="sidebar-slide active" data-slide="0">
-            <form class="my-form" autocomplete="on">
+            <form class="my-form" id="bin-form" autocomplete="on">
               <div class="container_form">
                 <h1>REQUEST A BIN</h1>
                 <ul>
                   <li>
-                    <select required>
-                      <option selected disabled>State</option>
-                      <option>Pennsylvania</option>
-                      <option>Maryland</option>
-                      <!-- <option>Other</option> -->
+                    <!-- Добавлен name="state" и значения (value) для опций -->
+                    <select name="state" required>
+                      <option selected disabled value="">State</option>
+                      <option value="Pennsylvania">Pennsylvania</option>
+                      <option value="NewJersey">New Jersey</option>
                     </select>
                   </li>
                   <li>
                     <div class="grid grid-2">
                       <div class="input-wrapper">
-                        <input type="text" id="name" placeholder="Name" required/>
+                        <!-- Добавлен name="name" -->
+                        <input type="text" id="name" name="name" placeholder="Name" required/>
                       </div>
-                       <input type="text" placeholder="Company" />
+                      <!-- Добавлен name="company" -->
+                      <input type="text" name="company" placeholder="Company" />
                     </div>
                   </li>
                   <li>
                     <div class="grid grid-2">
                       <div class="input-wrapper">
+                        <!-- Здесь name="email" уже был, оставляем -->
                         <input type="email" name="email" placeholder="Email" required/>
                       </div>
                       <div class="input-wrapper">
+                        <!-- Здесь name="phone" уже был, оставляем -->
                         <input type="tel" id="phone" name="phone" placeholder="Phone" required/>
                       </div>
                     </div>
                   </li>
                   <li>
                     <div class="grid">
-                       <div class="input-wrapper">
+                      <div class="input-wrapper">
+                        <!-- Здесь name="address" уже был, оставляем -->
                         <input type="text" name="address" placeholder="Address" required/>
                       </div>
                     </div>
                   </li>
                   <li>
-                    <textarea placeholder="Message"></textarea>
+                    <!-- Добавлен name="message" -->
+                    <textarea name="message" placeholder="Message"></textarea>
                   </li>
                   <li>
                     <div class="grid grid-3">
                       <button class="btn-grid" type="submit">
                         <span class="back"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/162656/email-icon.svg" alt=""/></span>
-                        <span class="front">SUBMIT</span>
+                        <!-- Добавлен id="submit-text" для анимации текста кнопки -->
+                        <span class="front" id="submit-text">SUBMIT</span>
                       </button>
                       <button class="btn-grid" type="reset">
                         <span class="back"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/162656/eraser-icon.svg" alt=""/></span>
@@ -524,6 +531,9 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/4.0.37/fullpage.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+  <script src="./emailpush.js"></script>
   <script src="./script.js"></script>
+  
 </body>
 </html>
